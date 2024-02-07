@@ -1,12 +1,9 @@
 <template>
   <button
-    class="flex items-center gap-1 text-gray-500 text-base h-9 rounded leading-5 hover:bg-slate-200 ease-in-out duration-200"
+    class="flex items-center gap-1 text-white text-base h-9 rounded leading-5 border border-transparent hover:border-white ease-in-out duration-200"
     :class="classNames"
   >
-    <span
-      v-if="$slots.default"
-      class="text-lg"
-    >
+    <span v-if="$slots.default" class="text-lg">
       <slot></slot>
     </span>
     <span v-if="title">

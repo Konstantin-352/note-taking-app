@@ -40,7 +40,6 @@ module.exports = {
     'vue/prop-name-casing': ['error', 'camelCase'],
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
     'vue/component-definition-name-casing': ['error', 'PascalCase'],
-    'vue/custom-event-name-casing': ['error', 'camelCase'],
     'vue/no-duplicate-attr-inheritance': 'error',
     'vue/this-in-template': ['error', 'never'],
     'vue/v-on-style': ['error', 'shorthand'],
@@ -52,8 +51,6 @@ module.exports = {
         order: ['template', 'script', 'style'],
       },
     ],
-    'vue/v-on-event-hyphenation': ['error', 'never'],
-    'vue/attribute-hyphenation': ['error', 'never'],
     'vue/v-bind-style': 'error',
     'vue/v-slot-style': ['error', 'shorthand'],
     'vue/no-unused-properties': [
