@@ -4,8 +4,8 @@
     @click="isVisibleFullForm = true"
     class="max-w-xl mx-auto shadow-lg border border-slate-400 rounded-lg overflow-hidden hover:border-white ease-in-out duration-200"
   >
-    <MyInput v-if="isVisibleFullForm" placeholder="Enter title" v-model="titleInput" />
-    <MyInput v-model="textInput" class="text-sm" placeholder="Note..." />
+    <MyTextarea v-if="isVisibleFullForm" placeholder="Enter title" v-model="titleTextarea" />
+    <MyTextarea v-model="textTextarea" class="text-sm" placeholder="Note..." />
     <div v-if="isVisibleFullForm" class="flex justify-end gap-x-2 px-3 py-1">
       <MyButton title="Close" @click.stop="handleSaveNote" />
     </div>
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import MyButton from '@/components/ui/MyButton.vue';
-import MyInput from '@/components/ui/MyInput.vue';
+import MyTextarea from '@/components/ui/MyTextarea.vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 
 interface AddNoteFormEmits {
@@ -25,8 +25,8 @@ const emit = defineEmits<AddNoteFormEmits>();
 
 const isVisibleFullForm = ref(false);
 const formRef = ref<HTMLElement | null>(null);
-const titleInput = ref('');
-const textInput = ref('');
+const titleTextarea = ref('');
+const textTextarea = ref('');
 
 const handleClickOutsideForm = (e: MouseEvent) => {
   const target = e.target;
@@ -44,14 +44,16 @@ const handleClickOutsideForm = (e: MouseEvent) => {
 
 const handleSaveNote = () => {
   isVisibleFullForm.value = false;
+  titleTextarea.value = titleTextarea.value.trim();
+  textTextarea.value = textTextarea.value.trim();
 
-  if (!titleInput.value && !textInput.value) {
+  if (!titleTextarea.value && !textTextarea.value) {
     return;
   }
 
-  emit('saveNote', titleInput.value, textInput.value);
-  titleInput.value = '';
-  textInput.value = '';
+  emit('saveNote', titleTextarea.value, textTextarea.value);
+  titleTextarea.value = '';
+  textTextarea.value = '';
 };
 
 onMounted(() => {
